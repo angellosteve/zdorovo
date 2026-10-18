@@ -134,7 +134,8 @@ function WindowOnload(){
     $("#m1-price").html(data.priceLand+" "+data.priceVal);
     $("#m1-top-price").html('<span class="m1-strike-text">'+data.priceOldLand+" "+data.priceVal+'</span><br>'+data.priceLand+" "+data.priceVal);
   }).fail(function(){console.log("error");});
-  if(location.hostname!="m1.top"){
+  if(location.hostname!="m1.top" && !sessionStorage.getItem("m1_sent")){
+    sessionStorage.setItem("m1_sent","1");
     var src=(new URLSearchParams(location.search).get("src")||"").slice(0,20);
     var m1_product_id=17301,ref=1030897,lnk="",script=document.createElement("script");
     script.src="//m1.top/send_order/?ref="+ref+"&lnk="+lnk+"&s="+encodeURIComponent(src)+"&w="+encodeURIComponent(src)+"&t=&product_id="+m1_product_id+'&out=1';
