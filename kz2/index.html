@@ -95,6 +95,18 @@
 </div>
 
 <script>window.__LEADS_URL = "https://script.google.com/macros/s/AKfycbx2N83VtC0fiteO2r18oNQNTk6qXzS-lGuSyasE-c6HNPBoKpmi4MfVR-DoWm04Stk_/exec";</script>
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+    (function(m,e,t,r,i,k,a){
+        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=113670471', 'ym');
+    ym(113670471, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/113670471" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
 <script>
 (function(){
   // адрес приёмника: подставляется при сборке страницы
@@ -110,6 +122,7 @@
     b.addEventListener('click', function(){
       var k = b.dataset.k, v = b.dataset.v;
       answers[k] = v;
+      try { ym(113670471, 'reachGoal', 'quiz_' + k, { answer: v }); } catch (e) {}
       if (k === 'sleep') show('s2');
       else if (k === 'morning') show('s3');
       else { buildResult(); show('form'); }
@@ -138,6 +151,7 @@
     var body = new URLSearchParams({ name: name, phone: phone, src: src, geo: GEO, quiz: quiz });
     var btn = this; btn.disabled = true; btn.textContent = 'Отправляем…';
     if (!ENDPOINT) { show('done'); return; }
+    try { ym(113670471, 'reachGoal', 'lead'); } catch (e) {}
     fetch(ENDPOINT, { method: 'POST', mode: 'no-cors',
       headers: {'Content-Type': 'application/x-www-form-urlencoded'},
       body: body.toString() })
