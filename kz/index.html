@@ -11,24 +11,29 @@
        font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
        line-height:1.55;-webkit-font-smoothing:antialiased}
   .wrap{max-width:560px;margin:0 auto;padding:0 16px 40px}
-  header{padding:26px 0 12px;text-align:center}
+  header{padding:26px 0 10px;text-align:center}
   .kicker{color:var(--accent);font-size:13px;letter-spacing:.14em;text-transform:uppercase}
-  h1{font-size:27px;line-height:1.25;margin:12px 0 10px;font-weight:800}
+  h1{font-size:26px;line-height:1.25;margin:12px 0 10px;font-weight:800}
   .lead{color:var(--muted);font-size:16px;margin:0 0 18px}
-  .bullets{list-style:none;padding:0;margin:0 0 20px}
-  .bullets li{position:relative;padding:9px 0 9px 30px;border-bottom:1px solid var(--line);font-size:15px}
-  .bullets li:last-child{border-bottom:0}
-  .bullets li::before{content:"";position:absolute;left:6px;top:16px;width:9px;height:9px;border-radius:50%;background:var(--accent)}
-  .panel{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px;margin:0 0 18px}
-  .cta{display:block;text-align:center;background:var(--accent);color:#17181d;text-decoration:none;
-       font-weight:800;font-size:17px;letter-spacing:.04em;padding:17px 12px;border-radius:12px;margin-top:6px}
-  .cta:active{transform:scale(.99)}
-  .note{color:var(--muted);font-size:13px;text-align:center;margin:10px 0 0}
-  .steps{counter-reset:s;list-style:none;padding:0;margin:0 0 8px}
-  .steps li{counter-increment:s;position:relative;padding:8px 0 8px 38px;font-size:15px}
-  .steps li::before{content:counter(s);position:absolute;left:0;top:6px;width:26px;height:26px;border-radius:50%;
-                    border:1px solid var(--accent);color:var(--accent);display:flex;align-items:center;justify-content:center;font-size:13px}
-  footer{color:#6f7686;font-size:12px;line-height:1.6;border-top:1px solid var(--line);margin-top:24px;padding-top:14px}
+  .panel{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px;margin:0 0 16px}
+  .q{font-size:17px;font-weight:700;margin:0 0 12px}
+  .opt{display:block;width:100%;text-align:left;background:#0f1116;color:var(--fg);
+       border:1px solid var(--line);border-radius:12px;padding:15px 16px;font-size:16px;
+       margin-bottom:10px;cursor:pointer;transition:.15s}
+  .opt:active{transform:scale(.99)}
+  .opt.on{border-color:var(--accent);color:var(--accent)}
+  .cta{display:block;width:100%;text-align:center;background:var(--accent);color:#17181d;border:none;
+       font-weight:800;font-size:17px;letter-spacing:.03em;padding:17px 12px;border-radius:12px;
+       margin-top:6px;cursor:pointer}
+  .cta:disabled{opacity:.5}
+  input{width:100%;background:#0f1116;color:var(--fg);border:1px solid var(--line);
+        border-radius:12px;padding:14px 16px;font-size:16px;margin-bottom:10px}
+  .note{color:var(--muted);font-size:13px;text-align:center;margin:8px 0 0}
+  .hidden{display:none}
+  .step{color:var(--muted);font-size:13px;margin:0 0 10px}
+  footer{color:#6f7686;font-size:12px;line-height:1.6;border-top:1px solid var(--line);margin-top:20px;padding-top:14px}
+  .thanks{text-align:center;padding:10px 0}
+  .thanks h2{font-size:22px;margin:0 0 8px}
 </style>
 </head>
 <body>
@@ -36,23 +41,51 @@
   <header>
     <div class="kicker">после 40 · восстановление</div>
     <h1>Утро перестало быть утром?</h1>
-    <p class="lead">Это не возраст и не характер. Чаще всего дело в кровотоке: сосуды сужаются, и кровь просто не доходит туда, куда должна.</p>
+    <p class="lead">Ответь на три вопроса — покажу, что именно у тебя ломается и с чего начинать.</p>
   </header>
 
-  <ul class="bullets">
-    <li>Пропадает первым — возвращается последним</li>
-    <li>Таблетка на один раз причину не убирает</li>
-    <li>Мужчины после 40 обычно начинают именно с сосудов</li>
-  </ul>
+  <!-- ШАГ 1 -->
+  <div class="panel" id="s1">
+    <p class="step">Шаг 1 из 3</p>
+    <p class="q">Сколько часов ты спишь в среднем?</p>
+    <button class="opt" data-k="sleep" data-v="<6">Меньше шести</button>
+    <button class="opt" data-k="sleep" data-v="6-7">Шесть-семь</button>
+    <button class="opt" data-k="sleep" data-v="8">Восемь и больше</button>
+  </div>
 
-  <div class="panel">
-    <ol class="steps">
-      <li>Разбираем, что именно ломается после 40</li>
-      <li>Показываем, из чего складывается восстановление</li>
-      <li>Подбираем подходящий вариант и обсуждаем доставку</li>
-    </ol>
-    <a class="cta" id="go" href="https://de.healthynaturalgoods.com/Rl6JJaropwX3BLe/tt/sergey/hh-16/hh/kz" rel="nofollow">Проверить наличие</a>
-    <p class="note">Оплата при получении. Есть противопоказания.</p>
+  <!-- ШАГ 2 -->
+  <div class="panel hidden" id="s2">
+    <p class="step">Шаг 2 из 3</p>
+    <p class="q">Как часто утром «ничего»?</p>
+    <button class="opt" data-k="morning" data-v="always">Почти каждый день</button>
+    <button class="opt" data-k="morning" data-v="often">Пару раз в неделю</button>
+    <button class="opt" data-k="morning" data-v="rare">Редко</button>
+  </div>
+
+  <!-- ШАГ 3 -->
+  <div class="panel hidden" id="s3">
+    <p class="step">Шаг 3 из 3</p>
+    <p class="q">Что уже пробовал?</p>
+    <button class="opt" data-k="tried" data-v="nothing">Ничего</button>
+    <button class="opt" data-k="tried" data-v="pills">Таблетки на раз</button>
+    <button class="opt" data-k="tried" data-v="herbs">Травы, добавки</button>
+  </div>
+
+  <!-- ФОРМА -->
+  <div class="panel hidden" id="form">
+    <p class="q" id="resTitle">Твой результат — 3 из 3</p>
+    <p class="lead" id="resText" style="margin-bottom:14px"></p>
+    <input id="fname" type="text" placeholder="Как тебя зовут" autocomplete="name">
+    <input id="fphone" type="tel" placeholder="Телефон" autocomplete="tel">
+    <button class="cta" id="send">Получить разбор</button>
+    <p class="note">Перезвоним и всё уточним. Оплата при получении.</p>
+  </div>
+
+  <div class="panel hidden" id="done">
+    <div class="thanks">
+      <h2>Готово</h2>
+      <p class="lead">Перезвоним в течение дня и всё расскажем.</p>
+    </div>
   </div>
 
   <footer>
@@ -60,6 +93,8 @@
     Есть противопоказания, необходима консультация специалиста.
   </footer>
 </div>
+
+<script>window.__LEADS_URL = "https://script.google.com/macros/s/AKfycbx2N83VtC0fiteO2r18oNQNTk6qXzS-lGuSyasE-c6HNPBoKpmi4MfVR-DoWm04Stk_/exec";</script>
 <!-- Yandex.Metrika counter -->
 <script type="text/javascript">
     (function(m,e,t,r,i,k,a){
@@ -73,15 +108,57 @@
 <noscript><div><img src="https://mc.yandex.ru/watch/113670471" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
 <!-- /Yandex.Metrika counter -->
 <script>
-  (function(){
-    var src = (new URLSearchParams(location.search).get('src') || 'direct').slice(0, 20);
-    var a = document.getElementById('go');
-    if (src !== 'direct') a.href += (a.href.indexOf('?') === -1 ? '?' : '&') + 'src=' + encodeURIComponent(src);
-    try { ym(113670471, 'params', { src: src }); } catch (e) {}
-    a.addEventListener('click', function(){
-      try { ym(113670471, 'reachGoal', 'cta_click', { src: src }); } catch (e) {}
+(function(){
+  // адрес приёмника: подставляется при сборке страницы
+  var ENDPOINT = window.__LEADS_URL || '';
+  var GEO = 'kz';
+  var src = (new URLSearchParams(location.search).get('src') || 'direct').slice(0, 30);
+  var answers = {};
+
+  function show(id){ ['s1','s2','s3','form','done'].forEach(function(x){
+      document.getElementById(x).classList.toggle('hidden', x !== id); }); }
+
+  document.querySelectorAll('.opt').forEach(function(b){
+    b.addEventListener('click', function(){
+      var k = b.dataset.k, v = b.dataset.v;
+      answers[k] = v;
+      try { ym(113670471, 'reachGoal', 'quiz_' + k, { answer: v }); } catch (e) {}
+      if (k === 'sleep') show('s2');
+      else if (k === 'morning') show('s3');
+      else { buildResult(); show('form'); }
     });
-  })();
+  });
+
+  function buildResult(){
+    var hard = (answers.sleep === '<6' ? 1 : 0) + (answers.morning === 'always' ? 1 : 0)
+             + (answers.tried === 'nothing' ? 1 : 0);
+    var t = document.getElementById('resTitle');
+    var d = document.getElementById('resText');
+    if (hard >= 2) {
+      t.textContent = 'Похоже на три причины сразу';
+      d.textContent = 'Сон, стресс и кровоток бьют в одну точку. Это не возраст — и это разбирается. Оставь номер, расскажем, с чего начинают мужчины после 40.';
+    } else {
+      t.textContent = 'Пока похоже на усталость';
+      d.textContent = 'Но если утро стало тише, чем раньше — лучше разобраться сейчас. Оставь номер, объясним, что проверяют в первую очередь.';
+    }
+  }
+
+  document.getElementById('send').addEventListener('click', function(){
+    var name = document.getElementById('fname').value.trim();
+    var phone = document.getElementById('fphone').value.trim();
+    if (phone.replace(/\D/g,'').length < 10) { alert('Укажи телефон'); return; }
+    var quiz = Object.keys(answers).map(function(k){ return k + '=' + answers[k]; }).join('; ');
+    var body = new URLSearchParams({ name: name, phone: phone, src: src, geo: GEO, quiz: quiz });
+    var btn = this; btn.disabled = true; btn.textContent = 'Отправляем…';
+    if (!ENDPOINT) { show('done'); return; }
+    try { ym(113670471, 'reachGoal', 'lead'); } catch (e) {}
+    fetch(ENDPOINT, { method: 'POST', mode: 'no-cors',
+      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+      body: body.toString() })
+      .then(function(){ show('done'); })
+      .catch(function(){ show('done'); });
+  });
+})();
 </script>
 </body>
 </html>
