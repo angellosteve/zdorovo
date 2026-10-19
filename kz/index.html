@@ -71,14 +71,12 @@
     <button class="opt" data-k="tried" data-v="herbs">Травы, добавки</button>
   </div>
 
-  <!-- ФОРМА -->
+  <!-- РЕЗУЛЬТАТ -->
   <div class="panel hidden" id="form">
     <p class="q" id="resTitle">Твой результат — 3 из 3</p>
     <p class="lead" id="resText" style="margin-bottom:14px"></p>
-    <input id="fname" type="text" placeholder="Как тебя зовут" autocomplete="name">
-    <input id="fphone" type="tel" placeholder="Телефон" autocomplete="tel">
-    <button class="cta" id="send">Получить разбор</button>
-    <p class="note">Перезвоним и всё уточним. Оплата при получении.</p>
+    <a class="cta" id="go" href="https://de.healthynaturalgoods.com/Rl6JJaropwX3BLe/tt/sergey/hh-16/hh/kz" rel="nofollow">Продолжить</a>
+    <p class="note">Оплата при получении. Есть противопоказания.</p>
   </div>
 
   <div class="panel hidden" id="done">
@@ -143,21 +141,15 @@
     }
   }
 
-  document.getElementById('send').addEventListener('click', function(){
-    var name = document.getElementById('fname').value.trim();
-    var phone = document.getElementById('fphone').value.trim();
-    if (phone.replace(/\D/g,'').length < 10) { alert('Укажи телефон'); return; }
-    var quiz = Object.keys(answers).map(function(k){ return k + '=' + answers[k]; }).join('; ');
-    var body = new URLSearchParams({ name: name, phone: phone, src: src, geo: GEO, quiz: quiz });
-    var btn = this; btn.disabled = true; btn.textContent = 'Отправляем…';
-    if (!ENDPOINT) { show('done'); return; }
-    try { ym(113670471, 'reachGoal', 'lead'); } catch (e) {}
-    fetch(ENDPOINT, { method: 'POST', mode: 'no-cors',
-      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-      body: body.toString() })
-      .then(function(){ show('done'); })
-      .catch(function(){ show('done'); });
-  });
+  // кнопка «Продолжить» ведёт на оффер с меткой источника
+  var go = document.getElementById('go');
+  if (go) {
+    if (src !== 'direct') go.href += (go.href.indexOf('?') === -1 ? '?' : '&') + 'src=' + encodeURIComponent(src);
+    go.addEventListener('click', function(){
+      try { ym(113670471, 'reachGoal', 'cta_click', { src: src }); } catch (e) {}
+    });
+  }
+  try { ym(113670471, 'params', { src: src }); } catch (e) {}
 })();
 </script>
 </body>
