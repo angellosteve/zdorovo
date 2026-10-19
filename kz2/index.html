@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Утро перестало быть утром — разбор для мужчин после 40</title>
+<style>
+  :root{--bg:#14161c;--panel:#1d2029;--fg:#eef0f4;--muted:#9aa2b0;--accent:#ffc65c;--line:#2b2f3a}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--fg);
+       font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+       line-height:1.55;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:560px;margin:0 auto;padding:0 16px 40px}
+  header{padding:26px 0 10px;text-align:center}
+  .kicker{color:var(--accent);font-size:13px;letter-spacing:.14em;text-transform:uppercase}
+  h1{font-size:26px;line-height:1.25;margin:12px 0 10px;font-weight:800}
+  .lead{color:var(--muted);font-size:16px;margin:0 0 18px}
+  .panel{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px;margin:0 0 16px}
+  .q{font-size:17px;font-weight:700;margin:0 0 12px}
+  .opt{display:block;width:100%;text-align:left;background:#0f1116;color:var(--fg);
+       border:1px solid var(--line);border-radius:12px;padding:15px 16px;font-size:16px;
+       margin-bottom:10px;cursor:pointer;transition:.15s}
+  .opt:active{transform:scale(.99)}
+  .opt.on{border-color:var(--accent);color:var(--accent)}
+  .cta{display:block;width:100%;text-align:center;background:var(--accent);color:#17181d;border:none;
+       font-weight:800;font-size:17px;letter-spacing:.03em;padding:17px 12px;border-radius:12px;
+       margin-top:6px;cursor:pointer}
+  .cta:disabled{opacity:.5}
+  input{width:100%;background:#0f1116;color:var(--fg);border:1px solid var(--line);
+        border-radius:12px;padding:14px 16px;font-size:16px;margin-bottom:10px}
+  .note{color:var(--muted);font-size:13px;text-align:center;margin:8px 0 0}
+  .hidden{display:none}
+  .step{color:var(--muted);font-size:13px;margin:0 0 10px}
+  footer{color:#6f7686;font-size:12px;line-height:1.6;border-top:1px solid var(--line);margin-top:20px;padding-top:14px}
+  .thanks{text-align:center;padding:10px 0}
+  .thanks h2{font-size:22px;margin:0 0 8px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="kicker">после 40 · восстановление</div>
+    <h1>Утро перестало быть утром?</h1>
+    <p class="lead">Ответь на три вопроса — покажу, что именно у тебя ломается и с чего начинать.</p>
+  </header>
+
+  <!-- ШАГ 1 -->
+  <div class="panel" id="s1">
+    <p class="step">Шаг 1 из 3</p>
+    <p class="q">Сколько часов ты спишь в среднем?</p>
+    <button class="opt" data-k="sleep" data-v="<6">Меньше шести</button>
+    <button class="opt" data-k="sleep" data-v="6-7">Шесть-семь</button>
+    <button class="opt" data-k="sleep" data-v="8">Восемь и больше</button>
+  </div>
+
+  <!-- ШАГ 2 -->
+  <div class="panel hidden" id="s2">
+    <p class="step">Шаг 2 из 3</p>
+    <p class="q">Как часто утром «ничего»?</p>
+    <button class="opt" data-k="morning" data-v="always">Почти каждый день</button>
+    <button class="opt" data-k="morning" data-v="often">Пару раз в неделю</button>
+    <button class="opt" data-k="morning" data-v="rare">Редко</button>
+  </div>
+
+  <!-- ШАГ 3 -->
+  <div class="panel hidden" id="s3">
+    <p class="step">Шаг 3 из 3</p>
+    <p class="q">Что уже пробовал?</p>
+    <button class="opt" data-k="tried" data-v="nothing">Ничего</button>
+    <button class="opt" data-k="tried" data-v="pills">Таблетки на раз</button>
+    <button class="opt" data-k="tried" data-v="herbs">Травы, добавки</button>
+  </div>
+
+  <!-- ФОРМА -->
+  <div class="panel hidden" id="form">
+    <p class="q" id="resTitle">Твой результат — 3 из 3</p>
+    <p class="lead" id="resText" style="margin-bottom:14px"></p>
+    <input id="fname" type="text" placeholder="Как тебя зовут" autocomplete="name">
+    <input id="fphone" type="tel" placeholder="Телефон" autocomplete="tel">
+    <button class="cta" id="send">Получить разбор</button>
+    <p class="note">Перезвоним и всё уточним. Оплата при получении.</p>
+  </div>
+
+  <div class="panel hidden" id="done">
+    <div class="thanks">
+      <h2>Готово</h2>
+      <p class="lead">Перезвоним в течение дня и всё расскажем.</p>
+    </div>
+  </div>
+
+  <footer>
+    Информация носит ознакомительный характер. БАД не является лекарственным средством.
+    Есть противопоказания, необходима консультация специалиста.
+  </footer>
+</div>
+
+<script>
+(function(){
+  // адрес приёмника: подставляется при сборке страницы
+  var ENDPOINT = window.__LEADS_URL || '';
+  var GEO = 'kz';
+  var src = (new URLSearchParams(location.search).get('src') || 'direct').slice(0, 30);
+  var answers = {};
+
+  function show(id){ ['s1','s2','s3','form','done'].forEach(function(x){
+      document.getElementById(x).classList.toggle('hidden', x !== id); }); }
+
+  document.querySelectorAll('.opt').forEach(function(b){
+    b.addEventListener('click', function(){
+      var k = b.dataset.k, v = b.dataset.v;
+      answers[k] = v;
+      if (k === 'sleep') show('s2');
+      else if (k === 'morning') show('s3');
+      else { buildResult(); show('form'); }
+    });
+  });
+
+  function buildResult(){
+    var hard = (answers.sleep === '<6' ? 1 : 0) + (answers.morning === 'always' ? 1 : 0)
+             + (answers.tried === 'nothing' ? 1 : 0);
+    var t = document.getElementById('resTitle');
+    var d = document.getElementById('resText');
+    if (hard >= 2) {
+      t.textContent = 'Похоже на три причины сразу';
+      d.textContent = 'Сон, стресс и кровоток бьют в одну точку. Это не возраст — и это разбирается. Оставь номер, расскажем, с чего начинают мужчины после 40.';
+    } else {
+      t.textContent = 'Пока похоже на усталость';
+      d.textContent = 'Но если утро стало тише, чем раньше — лучше разобраться сейчас. Оставь номер, объясним, что проверяют в первую очередь.';
+    }
+  }
+
+  document.getElementById('send').addEventListener('click', function(){
+    var name = document.getElementById('fname').value.trim();
+    var phone = document.getElementById('fphone').value.trim();
+    if (phone.replace(/\D/g,'').length < 10) { alert('Укажи телефон'); return; }
+    var quiz = Object.keys(answers).map(function(k){ return k + '=' + answers[k]; }).join('; ');
+    var body = new URLSearchParams({ name: name, phone: phone, src: src, geo: GEO, quiz: quiz });
+    var btn = this; btn.disabled = true; btn.textContent = 'Отправляем…';
+    if (!ENDPOINT) { show('done'); return; }
+    fetch(ENDPOINT, { method: 'POST', mode: 'no-cors',
+      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+      body: body.toString() })
+      .then(function(){ show('done'); })
+      .catch(function(){ show('done'); });
+  });
+})();
+</script>
+</body>
+</html>
