@@ -60,12 +60,27 @@
     Есть противопоказания, необходима консультация специалиста.
   </footer>
 </div>
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+    (function(m,e,t,r,i,k,a){
+        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=113670471', 'ym');
+    ym(113670471, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/113670471" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
 <script>
-  // пробрасываем источник в адрес, если он пришёл: ?src=...
   (function(){
-    var src = (new URLSearchParams(location.search).get('src') || '').slice(0, 20);
+    var src = (new URLSearchParams(location.search).get('src') || 'direct').slice(0, 20);
     var a = document.getElementById('go');
-    if (src) a.href += (a.href.indexOf('?') === -1 ? '?' : '&') + 'src=' + encodeURIComponent(src);
+    if (src !== 'direct') a.href += (a.href.indexOf('?') === -1 ? '?' : '&') + 'src=' + encodeURIComponent(src);
+    try { ym(113670471, 'params', { src: src }); } catch (e) {}
+    a.addEventListener('click', function(){
+      try { ym(113670471, 'reachGoal', 'cta_click', { src: src }); } catch (e) {}
+    });
   })();
 </script>
 </body>
