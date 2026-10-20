@@ -75,14 +75,16 @@
   <div class="panel hidden" id="form">
     <p class="q" id="resTitle">Твой результат — 3 из 3</p>
     <p class="lead" id="resText" style="margin-bottom:14px"></p>
-    <a class="cta" id="go" href="https://de.healthynaturalgoods.com/Rl6JJaropwX3BLe/tt/sergey/hh-16/hh/kz" rel="nofollow">Продолжить</a>
-    <p class="note">Оплата при получении. Есть противопоказания.</p>
+    <input id="fname" type="text" placeholder="Как тебя зовут" autocomplete="name">
+    <input id="fphone" type="tel" placeholder="Телефон" autocomplete="tel">
+    <button class="cta" id="send">Получить бесплатно</button>
+    <p class="note">Первая упаковка бесплатно. Оплата при получении. Есть противопоказания.</p>
   </div>
 
   <div class="panel hidden" id="done">
     <div class="thanks">
-      <h2>Готово</h2>
-      <p class="lead">Перезвоним в течение дня и всё расскажем.</p>
+      <h2>Заявка принята</h2>
+      <p class="lead">Перезвоним в течение дня и всё уточним.</p>
     </div>
   </div>
 
@@ -141,14 +143,43 @@
     }
   }
 
-  // кнопка «Продолжить» ведёт на оффер с меткой источника
-  var go = document.getElementById('go');
-  if (go) {
-    if (src !== 'direct') go.href += (go.href.indexOf('?') === -1 ? '?' : '&') + 'src=' + encodeURIComponent(src);
-    go.addEventListener('click', function(){
-      try { ym(113670471, 'reachGoal', 'cta_click', { src: src }); } catch (e) {}
+  // отправка лида напрямую в MetaCPA по API
+  var FLOW_HASH = 'oUVm8DKexlxsenJ';
+  var LEAD_URL = 'https://metacpa.ru/create';
+
+  var sendBtn = document.getElementById('send');
+  if (sendBtn) {
+    sendBtn.addEventListener('click', function(){
+      var name = (document.getElementById('fname').value || '').trim();
+      var phone = (document.getElementById('fphone').value || '').trim();
+      if (phone.replace(/\D/g, '').length < 10) { alert('Укажите телефон'); return; }
+      var btn = this;
+      btn.disabled = true;
+      btn.textContent = 'Отправляем…';
+
+      function submitWithIp(ip) {
+        var q = new URLSearchParams({
+          flow_hash: FLOW_HASH,
+          name: name,
+          phone: phone,
+          ip: ip,
+          sub1: 'site',
+          sub2: src,
+          sub3: 'kz',
+          sub4: 'quiz'
+        });
+        fetch(LEAD_URL + '?' + q.toString(), { mode: 'no-cors' }).catch(function(){});
+        try { ym(113670471, 'reachGoal', 'lead'); } catch (e) {}
+        setTimeout(function(){ show('done'); }, 600);
+      }
+
+      fetch('https://api.ipify.org?format=json', { cache: 'no-store' })
+        .then(function(r){ return r.json(); })
+        .then(function(d){ submitWithIp(d.ip); })
+        .catch(function(){ submitWithIp(''); });
     });
   }
+
   try { ym(113670471, 'params', { src: src }); } catch (e) {}
 })();
 </script>
