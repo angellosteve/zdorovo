@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Erectol Forte — восстановление после 40</title>
+<title>Detox Meridian — очищение и легкость</title>
 <style>
   :root{--bg:#14161c;--panel:#1d2029;--fg:#eef0f4;--muted:#9aa2b0;--accent:#ffc65c;--line:#2b2f3a}
   *{box-sizing:border-box}
@@ -60,31 +60,31 @@
 <body>
 <div class="wrap">
   <header>
-    <div class="kicker">после 40 · восстановление</div>
-    <h1>Утро перестало быть утром?</h1>
-    <p class="lead">Это не возраст и не характер. Чаще всего дело в кровотоке: сосуды сужаются, и кровь просто не доходит туда, куда должна.</p>
+    <div class="kicker">паразиты · очищение</div>
+    <h1>Постоянно тянет на сладкое и нет сил?</h1>
+    <p class="lead">Часто дело не в силе воли. Если в животе тяжесть, кожа чешется, а утром нет энергии — стоит посмотреть на причину, а не на следствие.</p>
   </header>
 
   <ul class="bullets">
-    <li>Пропадает первым — возвращается последним</li>
-    <li>Таблетка на один раз причину не убирает</li>
-    <li>Мужчины после 40 обычно начинают именно с сосудов</li>
+    <li>Тяжесть после еды и вздутие</li>
+    <li>Тянет на сладкое и мучное</li>
+    <li>Утром встаёшь — уже уставший</li>
   </ul>
 
   <div class="panel">
     <div class="price">
       <div>
-        <span class="old">90 бел.р</span><span class="new">45 бел.р</span>
+        <span class="old">98 бел.р</span><span class="new">49 бел.р</span>
       </div>
       <div class="cap">оплата при получении</div>
     </div>
 
     <!-- ФОРМА M1: поля, product_id и ref менять нельзя -->
     <div class="m1-content">
-      <div class="m1-top"><div class="m1-left"><h1>Erectol Forte - капсулы для потенции</h1></div>
+      <div class="m1-top"><div class="m1-left"><h1>Detox Meridian — капсулы от паразитов</h1></div>
       <div class="m1-right"><div class="m1-wrap"><div class="m1-price"><div class="m1-wrap">
       <div class="m1-left m1-big-text">Цена</div>
-      <div id="m1-top-price" class="m1-right m1-big-text"><span class="m1-strike-text">90 бел.р</span><br>45 бел.р</div>
+      <div id="m1-top-price" class="m1-right m1-big-text"><span class="m1-strike-text">98 бел.р</span><br>49 бел.р</div>
       </div></div></div></div></div>
       <div class="m1-bottom"><div class="m1-wrap"><div class="m1-form">
       <form action="" method="POST" onsubmit="urlGen(this);">
@@ -93,12 +93,12 @@
         <div class="m1-row"><label for="m1-phone">Телефон</label>
           <input id="m1-phone" name="phone" type="tel" placeholder="+375 __ ___ __ __"></div>
         <div class="m1-row m1-price"><div class="m1-left">Стоимость заказа</div>
-          <div id="m1-price" class="m1-right">45 бел.р</div></div>
+          <div id="m1-price" class="m1-right">49 бел.р</div></div>
         <div class="m1-line"></div>
         <div class="m1-row m1-big-text"><div class="m1-left">ИТОГО</div>
-          <div id="m1-total-price" class="m1-right">45 бел.р</div></div>
+          <div id="m1-total-price" class="m1-right">49 бел.р</div></div>
         <div class="m1-row m1-align-center">
-          <input type="hidden" name="product_id" value="17301">
+          <input type="hidden" name="product_id" value="19159">
           <input type="hidden" name="ref" value="1030897">
           <input type="submit" value="ЗАКАЗАТЬ">
         </div>
@@ -129,7 +129,7 @@ function WindowOnload(){
     if(val.phone.length<7){alert("Укажите корректный телефон!");return false;}
     return true;
   });
-  $.ajax({url:"//m1.top/form_lending.js?p=17301&geo=by",dataType:"json"}).done(function(data){
+  $.ajax({url:"//m1.top/form_lending.js?p=19159&geo=by",dataType:"json"}).done(function(data){
     $("#m1-total-price").text(data.priceLand+" "+data.priceVal);
     $("#m1-price").html(data.priceLand+" "+data.priceVal);
     $("#m1-top-price").html('<span class="m1-strike-text">'+data.priceOldLand+" "+data.priceVal+'</span><br>'+data.priceLand+" "+data.priceVal);
@@ -137,7 +137,7 @@ function WindowOnload(){
   if(location.hostname!="m1.top" && !sessionStorage.getItem("m1_sent")){
     sessionStorage.setItem("m1_sent","1");
     var src=(new URLSearchParams(location.search).get("src")||"").slice(0,20);
-    var m1_product_id=17301,ref=1030897,lnk="",script=document.createElement("script");
+    var m1_product_id=19159,ref=1030897,lnk="",script=document.createElement("script");
     script.src="//m1.top/send_order/?ref="+ref+"&lnk="+lnk+"&s="+encodeURIComponent(src)+"&w="+encodeURIComponent(src)+"&t=&product_id="+m1_product_id+'&out=1';
     document.body.appendChild(script);
   }
