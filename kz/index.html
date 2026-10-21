@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Утро перестало быть утром — разбор для мужчин после 40</title>
+<title>Скорпионикс — для восстановления суставов</title>
 <style>
   :root{--bg:#14161c;--panel:#1d2029;--fg:#eef0f4;--muted:#9aa2b0;--accent:#ffc65c;--line:#2b2f3a}
   *{box-sizing:border-box}
@@ -11,177 +11,139 @@
        font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
        line-height:1.55;-webkit-font-smoothing:antialiased}
   .wrap{max-width:560px;margin:0 auto;padding:0 16px 40px}
-  header{padding:26px 0 10px;text-align:center}
+  header{padding:28px 0 14px;text-align:center}
   .kicker{color:var(--accent);font-size:13px;letter-spacing:.14em;text-transform:uppercase}
-  h1{font-size:26px;line-height:1.25;margin:12px 0 10px;font-weight:800}
+  h1{font-size:27px;line-height:1.25;margin:12px 0 10px;font-weight:800}
   .lead{color:var(--muted);font-size:16px;margin:0 0 18px}
-  .panel{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px;margin:0 0 16px}
-  .q{font-size:17px;font-weight:700;margin:0 0 12px}
-  .opt{display:block;width:100%;text-align:left;background:#0f1116;color:var(--fg);
-       border:1px solid var(--line);border-radius:12px;padding:15px 16px;font-size:16px;
-       margin-bottom:10px;cursor:pointer;transition:.15s}
-  .opt:active{transform:scale(.99)}
-  .opt.on{border-color:var(--accent);color:var(--accent)}
-  .cta{display:block;width:100%;text-align:center;background:var(--accent);color:#17181d;border:none;
-       font-weight:800;font-size:17px;letter-spacing:.03em;padding:17px 12px;border-radius:12px;
-       margin-top:6px;cursor:pointer}
-  .cta:disabled{opacity:.5}
-  input{width:100%;background:#0f1116;color:var(--fg);border:1px solid var(--line);
-        border-radius:12px;padding:14px 16px;font-size:16px;margin-bottom:10px}
-  .note{color:var(--muted);font-size:13px;text-align:center;margin:8px 0 0}
-  .hidden{display:none}
-  .step{color:var(--muted);font-size:13px;margin:0 0 10px}
-  footer{color:#6f7686;font-size:12px;line-height:1.6;border-top:1px solid var(--line);margin-top:20px;padding-top:14px}
-  .thanks{text-align:center;padding:10px 0}
-  .thanks h2{font-size:22px;margin:0 0 8px}
+  .bullets{list-style:none;padding:0;margin:0 0 22px}
+  .bullets li{position:relative;padding:9px 0 9px 30px;border-bottom:1px solid var(--line);font-size:15px}
+  .bullets li:last-child{border-bottom:0}
+  .bullets li::before{content:"";position:absolute;left:6px;top:16px;width:9px;height:9px;
+                      border-radius:50%;background:var(--accent)}
+  .panel{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px;margin:0 0 18px}
+  .price{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:14px}
+  .price .old{color:#6f7686;text-decoration:line-through;font-size:17px;margin-right:10px}
+  .price .new{color:var(--accent);font-size:30px;font-weight:800}
+  .price .cap{color:var(--muted);font-size:13px}
+  /* перебиваем стили формы M1 */
+  .m1-content{max-width:100%!important;width:100%!important;height:auto!important;
+              background:transparent!important;color:var(--fg)!important;border-radius:12px;overflow:hidden}
+  .m1-content h1{display:none!important}
+  .m1-top{display:none!important}
+  .m1-bottom{background:transparent!important}
+  .m1-bottom .m1-wrap{padding:0!important}
+  .m1-bottom .m1-form .m1-row{float:none!important;width:100%!important;clear:both!important;
+                               margin-bottom:16px!important}
+  .m1-bottom .m1-form .m1-row.m1-price,
+  .m1-bottom .m1-form .m1-row.m1-big-text{display:flex!important;justify-content:space-between!important;
+                                           align-items:baseline!important}
+  .m1-bottom .m1-form .m1-row .m1-left,
+  .m1-bottom .m1-form .m1-row .m1-right{float:none!important}
+  .m1-big-text{font-size:18px!important;line-height:22px!important}
+  .m1-strike-text{color:#6f7686!important}
+  .m1-bottom .m1-form .m1-row label{color:var(--muted)!important;font-size:13px!important}
+  .m1-bottom .m1-form .m1-row input[name=name],
+  .m1-bottom .m1-form .m1-row input[name=phone]{
+      background:#0f1116!important;color:var(--fg)!important;border:1px solid var(--line)!important;
+      border-radius:10px!important;padding:13px!important;font-size:16px!important;width:100%!important}
+  .m1-bottom .m1-form .m1-row input[type=submit]{
+      width:100%!important;max-width:none!important;height:54px!important;border-radius:12px!important;
+      background:var(--accent)!important;color:#17181d!important;font-weight:800!important;
+      font-size:17px!important;letter-spacing:.04em;padding:0!important;margin-top:8px!important}
+  .m1-bottom .m1-form .m1-line{border-top:1px solid var(--line)!important}
+  .m1-price .m1-left,.m1-price .m1-right{color:var(--fg)!important}
+  footer{color:#6f7686;font-size:12px;line-height:1.6;border-top:1px solid var(--line);
+         margin-top:24px;padding-top:14px}
+  .note{color:var(--muted);font-size:13px;text-align:center;margin:10px 0 0}
 </style>
 </head>
 <body>
 <div class="wrap">
   <header>
-    <div class="kicker">после 40 · восстановление</div>
-    <h1>Утро перестало быть утром?</h1>
-    <p class="lead">Ответь на три вопроса — покажу, что именно у тебя ломается и с чего начинать.</p>
+    <div class="kicker">суставы · после 45</div>
+    <h1>Встаёшь со скрипом?</h1>
+    <p class="lead">Колено щёлкает на лестнице, пальцы не сгибаются утром, ноет к погоде. Это не старость — это сустав. И с этим работают, а не ждут.</p>
   </header>
 
-  <!-- ШАГ 1 -->
-  <div class="panel" id="s1">
-    <p class="step">Шаг 1 из 3</p>
-    <p class="q">Сколько часов ты спишь в среднем?</p>
-    <button class="opt" data-k="sleep" data-v="<6">Меньше шести</button>
-    <button class="opt" data-k="sleep" data-v="6-7">Шесть-семь</button>
-    <button class="opt" data-k="sleep" data-v="8">Восемь и больше</button>
-  </div>
+  <ul class="bullets">
+    <li>Колени хрустят при приседании</li>
+    <li>Спускаешься по лестнице боком</li>
+    <li>Ноет к погоде — обе</li>
+  </ul>
 
-  <!-- ШАГ 2 -->
-  <div class="panel hidden" id="s2">
-    <p class="step">Шаг 2 из 3</p>
-    <p class="q">Как часто утром «ничего»?</p>
-    <button class="opt" data-k="morning" data-v="always">Почти каждый день</button>
-    <button class="opt" data-k="morning" data-v="often">Пару раз в неделю</button>
-    <button class="opt" data-k="morning" data-v="rare">Редко</button>
-  </div>
-
-  <!-- ШАГ 3 -->
-  <div class="panel hidden" id="s3">
-    <p class="step">Шаг 3 из 3</p>
-    <p class="q">Что уже пробовал?</p>
-    <button class="opt" data-k="tried" data-v="nothing">Ничего</button>
-    <button class="opt" data-k="tried" data-v="pills">Таблетки на раз</button>
-    <button class="opt" data-k="tried" data-v="herbs">Травы, добавки</button>
-  </div>
-
-  <!-- РЕЗУЛЬТАТ -->
-  <div class="panel hidden" id="form">
-    <p class="q" id="resTitle">Твой результат — 3 из 3</p>
-    <p class="lead" id="resText" style="margin-bottom:14px"></p>
-    <input id="fname" type="text" placeholder="Как тебя зовут" autocomplete="name">
-    <input id="fphone" type="tel" placeholder="Телефон" autocomplete="tel">
-    <button class="cta" id="send">Получить бесплатно</button>
-    <p class="note">Первая упаковка бесплатно. Оплата при получении. Есть противопоказания.</p>
-  </div>
-
-  <div class="panel hidden" id="done">
-    <div class="thanks">
-      <h2>Заявка принята</h2>
-      <p class="lead">Перезвоним в течение дня и всё уточним.</p>
+  <div class="panel">
+    <div class="price">
+      <div>
+        <span class="old">19 990 тг</span><span class="new">бесплатно</span>
+      </div>
+      <div class="cap">оплата при получении</div>
     </div>
+
+    <!-- ФОРМА M1: поля, product_id и ref менять нельзя -->
+    <div class="m1-content">
+      <div class="m1-top"><div class="m1-left"><h1>Скорпионикс — бальзам для суставов</h1></div>
+      <div class="m1-right"><div class="m1-wrap"><div class="m1-price"><div class="m1-wrap">
+      <div class="m1-left m1-big-text">Цена</div>
+      <div id="m1-top-price" class="m1-right m1-big-text"><span class="m1-strike-text">19 990 тг</span><br>бесплатно</div>
+      </div></div></div></div></div>
+      <div class="m1-bottom"><div class="m1-wrap"><div class="m1-form">
+      <form action="" method="POST" onsubmit="urlGen(this);">
+        <div class="m1-row"><label for="m1-name">ФИО</label>
+          <input id="m1-name" name="name" type="text" placeholder="Иванов Иван Иванович"></div>
+        <div class="m1-row"><label for="m1-phone">Телефон</label>
+          <input id="m1-phone" name="phone" type="tel" placeholder="+7 ___ ___ __ __"></div>
+        <div class="m1-row m1-price"><div class="m1-left">Стоимость заказа</div>
+          <div id="m1-price" class="m1-right">бесплатно</div></div>
+        <div class="m1-line"></div>
+        <div class="m1-row m1-big-text"><div class="m1-left">ИТОГО</div>
+          <div id="m1-total-price" class="m1-right">бесплатно</div></div>
+        <div class="m1-row m1-align-center">
+          <input type="hidden" name="product_id" value="18926">
+          <input type="hidden" name="ref" value="1030897">
+          <input type="submit" value="ЗАКАЗАТЬ">
+        </div>
+      </form>
+      </div></div></div>
+    </div>
+    <!-- /ФОРМА M1 -->
+    <p class="note">Оставьте номер — перезвоним и всё уточним</p>
   </div>
 
   <footer>
     Информация носит ознакомительный характер. БАД не является лекарственным средством.
     Есть противопоказания, необходима консультация специалиста.
+    <br>Доставка по Казахстану, оплата при получении.
   </footer>
 </div>
 
-<script>window.__LEADS_URL = "https://script.google.com/macros/s/AKfycbx2N83VtC0fiteO2r18oNQNTk6qXzS-lGuSyasE-c6HNPBoKpmi4MfVR-DoWm04Stk_/exec";</script>
-<!-- Yandex.Metrika counter -->
-<script type="text/javascript">
-    (function(m,e,t,r,i,k,a){
-        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-        m[i].l=1*new Date();
-        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
-        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
-    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=113670471', 'ym');
-    ym(113670471, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
-</script>
-<noscript><div><img src="https://mc.yandex.ru/watch/113670471" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-<!-- /Yandex.Metrika counter -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script>
-(function(){
-  // адрес приёмника: подставляется при сборке страницы
-  var ENDPOINT = window.__LEADS_URL || '';
-  var GEO = 'kz';
-  var src = (new URLSearchParams(location.search).get('src') || 'direct').slice(0, 30);
-  var answers = {};
-
-  function show(id){ ['s1','s2','s3','form','done'].forEach(function(x){
-      document.getElementById(x).classList.toggle('hidden', x !== id); }); }
-
-  document.querySelectorAll('.opt').forEach(function(b){
-    b.addEventListener('click', function(){
-      var k = b.dataset.k, v = b.dataset.v;
-      answers[k] = v;
-      try { ym(113670471, 'reachGoal', 'quiz_' + k, { answer: v }); } catch (e) {}
-      if (k === 'sleep') show('s2');
-      else if (k === 'morning') show('s3');
-      else { buildResult(); show('form'); }
-    });
+function WindowOnload(){
+  $("form").submit(function(){
+    var obj = {}, val = {};
+    obj.name=$(this).find("input[name=name]");
+    obj.phone=$(this).find("input[name=phone]");
+    val.name=obj.name.val().trim(); val.phone=obj.phone.val().trim();
+    obj.name.val(val.name); obj.phone.val(val.phone);
+    if(val.name.length==0){alert("Укажите корректные ФИО!");return false;}
+    if(val.phone.length<7){alert("Укажите корректный телефон!");return false;}
+    return true;
   });
-
-  function buildResult(){
-    var hard = (answers.sleep === '<6' ? 1 : 0) + (answers.morning === 'always' ? 1 : 0)
-             + (answers.tried === 'nothing' ? 1 : 0);
-    var t = document.getElementById('resTitle');
-    var d = document.getElementById('resText');
-    if (hard >= 2) {
-      t.textContent = 'Похоже на три причины сразу';
-      d.textContent = 'Сон, стресс и кровоток бьют в одну точку. Это не возраст — и это разбирается. Оставь номер, расскажем, с чего начинают мужчины после 40.';
-    } else {
-      t.textContent = 'Пока похоже на усталость';
-      d.textContent = 'Но если утро стало тише, чем раньше — лучше разобраться сейчас. Оставь номер, объясним, что проверяют в первую очередь.';
-    }
+  $.ajax({url:"//m1.top/form_lending.js?p=18926&geo=kz",dataType:"json"}).done(function(data){
+    $("#m1-total-price").text(data.priceLand+" "+data.priceVal);
+    $("#m1-price").html(data.priceLand+" "+data.priceVal);
+    $("#m1-top-price").html('<span class="m1-strike-text">'+data.priceOldLand+" "+data.priceVal+'</span><br>'+data.priceLand+" "+data.priceVal);
+  }).fail(function(){console.log("error");});
+  if(location.hostname!="m1.top" && !sessionStorage.getItem("m1_sent")){
+    sessionStorage.setItem("m1_sent","1");
+    var src=(new URLSearchParams(location.search).get("src")||"").slice(0,20);
+    var m1_product_id=18926,ref=1030897,lnk="",script=document.createElement("script");
+    script.src="//m1.top/send_order/?ref="+ref+"&lnk="+lnk+"&s="+encodeURIComponent(src)+"&w="+encodeURIComponent(src)+"&t=&product_id="+m1_product_id+'&out=1';
+    document.body.appendChild(script);
   }
-
-  // отправка лида напрямую в MetaCPA по API
-  var FLOW_HASH = 'oUVm8DKexlxsenJ';
-  var LEAD_URL = 'https://metacpa.ru/create';
-
-  var sendBtn = document.getElementById('send');
-  if (sendBtn) {
-    sendBtn.addEventListener('click', function(){
-      var name = (document.getElementById('fname').value || '').trim();
-      var phone = (document.getElementById('fphone').value || '').trim();
-      if (phone.replace(/\D/g, '').length < 10) { alert('Укажите телефон'); return; }
-      var btn = this;
-      btn.disabled = true;
-      btn.textContent = 'Отправляем…';
-
-      function submitWithIp(ip) {
-        var q = new URLSearchParams({
-          flow_hash: FLOW_HASH,
-          name: name,
-          phone: phone,
-          ip: ip,
-          sub1: 'site',
-          sub2: src,
-          sub3: 'kz',
-          sub4: 'quiz'
-        });
-        fetch(LEAD_URL + '?' + q.toString(), { mode: 'no-cors' }).catch(function(){});
-        try { ym(113670471, 'reachGoal', 'lead'); } catch (e) {}
-        setTimeout(function(){ show('done'); }, 600);
-      }
-
-      fetch('https://api.ipify.org?format=json', { cache: 'no-store' })
-        .then(function(r){ return r.json(); })
-        .then(function(d){ submitWithIp(d.ip); })
-        .catch(function(){ submitWithIp(''); });
-    });
-  }
-
-  try { ym(113670471, 'params', { src: src }); } catch (e) {}
-})();
+}
+$(function(){WindowOnload();});
 </script>
+<script src="//hostline.today/assets_pages/js/m1ref.js"></script>
 </body>
 </html>
