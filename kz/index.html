@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Скорпионикс — бальзам для суставов в Казахстане</title>
+<title>Скорпионикс — для восстановления суставов</title>
 <style>
   :root{--bg:#14161c;--panel:#1d2029;--fg:#eef0f4;--muted:#9aa2b0;--accent:#ffc65c;--line:#2b2f3a}
   *{box-sizing:border-box}
@@ -55,93 +55,69 @@
   footer{color:#6f7686;font-size:12px;line-height:1.6;border-top:1px solid var(--line);
          margin-top:24px;padding-top:14px}
   .note{color:var(--muted);font-size:13px;text-align:center;margin:10px 0 0}
-
-  header{padding:20px 0 12px;text-align:left}
-  h1{margin:6px 0;font-size:30px}
-  .lead{margin:0;font-size:15px}
-  h2{font-size:20px;line-height:1.3;margin:0 0 8px}
-  .form-intro{font-size:14px;color:var(--muted);margin:0 0 14px}
-  .m1-bottom .m1-form .m1-row{margin-bottom:10px!important}
-  label{display:block;margin-bottom:5px}
-  input{font-family:inherit}
-  input:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
-  input[type=submit]{cursor:pointer;border:0}
-  .details{padding:4px 2px}
-  .details p,.details li{font-size:15px}
-  .details h2:not(:first-child){margin-top:22px}
-  .details ol{padding-left:22px}
-  .details li{margin-bottom:8px}
-  .small,.details .small{font-size:13px;color:var(--muted)}
-  #form-error{color:#ffb4b4;font-size:14px}
-  @media(max-width:359px){.wrap{padding-left:12px;padding-right:12px}.panel{padding:14px}}
 </style>
 </head>
 <body>
 <div class="wrap">
   <header>
-    <div class="kicker">Казахстан · заявка на звонок</div>
-    <h1>Скорпионикс</h1>
-    <p class="lead">Бальзам для суставов. Состав и условия заказа — на этой странице.</p>
+    <div class="kicker">суставы · после 45</div>
+    <h1>Встаёшь со скрипом?</h1>
+    <p class="lead">Колено щёлкает на лестнице, пальцы не сгибаются утром, ноет к погоде. Это не старость — это сустав. И с этим работают, а не ждут.</p>
   </header>
 
-  <div class="panel" id="order">
-    <h2>Уточнить условия заказа</h2>
-    <p class="form-intro">Оставьте имя и телефон. Оператор уточнит стоимость, условия акции и доставки до подтверждения заказа.</p>
+  <ul class="bullets">
+    <li>Колени хрустят при приседании</li>
+    <li>Спускаешься по лестнице боком</li>
+    <li>Ноет к погоде — обе</li>
+  </ul>
+
+  <div class="panel">
+    <div class="price">
+      <div>
+        <span class="old">19 990 тг</span><span class="new">бесплатно</span>
+      </div>
+      <div class="cap">оплата при получении</div>
+    </div>
 
     <!-- ФОРМА M1: поля, product_id и ref менять нельзя -->
     <div class="m1-content">
+      <div class="m1-top"><div class="m1-left"><h1>Скорпионикс — бальзам для суставов</h1></div>
+      <div class="m1-right"><div class="m1-wrap"><div class="m1-price"><div class="m1-wrap">
+      <div class="m1-left m1-big-text">Цена</div>
+      <div id="m1-top-price" class="m1-right m1-big-text"><span class="m1-strike-text">19 990 тг</span><br>бесплатно</div>
+      </div></div></div></div></div>
       <div class="m1-bottom"><div class="m1-wrap"><div class="m1-form">
-      <form action="" method="POST" onsubmit="return prepareOrder(this);">
-        <div class="m1-row"><label for="m1-name">Ваше имя</label>
-          <input id="m1-name" name="name" type="text" placeholder="Как к вам обращаться" autocomplete="given-name" required></div>
+      <form action="" method="POST" onsubmit="urlGen(this);">
+        <div class="m1-row"><label for="m1-name">ФИО</label>
+          <input id="m1-name" name="name" type="text" placeholder="Иванов Иван Иванович"></div>
         <div class="m1-row"><label for="m1-phone">Телефон</label>
-          <input id="m1-phone" name="phone" type="tel" placeholder="+7 7XX XXX XX XX" autocomplete="tel" inputmode="tel" required minlength="7"></div>
+          <input id="m1-phone" name="phone" type="tel" placeholder="+7(770)1234567"></div>
+        <div class="m1-row m1-price"><div class="m1-left">Стоимость заказа</div>
+          <div id="m1-price" class="m1-right">бесплатно</div></div>
+        <div class="m1-line"></div>
+        <div class="m1-row m1-big-text"><div class="m1-left">ИТОГО</div>
+          <div id="m1-total-price" class="m1-right">бесплатно</div></div>
         <div class="m1-row m1-align-center">
           <input type="hidden" name="product_id" value="18926">
           <input type="hidden" name="ref" value="1030897">
-          <input type="submit" value="Оставить заявку">
+          <input type="submit" value="ЗАКАЗАТЬ">
         </div>
       </form>
       </div></div></div>
     </div>
     <!-- /ФОРМА M1 -->
-    <p class="note">Нажимая кнопку, вы передаёте имя и телефон для звонка по заявке.</p>
-    <p id="form-error" role="alert" hidden></p>
-    <noscript><p>Для отправки заявки включите JavaScript в браузере.</p></noscript>
+    <p class="note">Оставьте номер — перезвоним и всё уточним</p>
   </div>
 
-  <section class="details" aria-labelledby="composition">
-    <h2 id="composition">Что в составе</h2>
-    <p>Среди компонентов: экстракт змеиного яда, масло виноградной косточки, масло ши.</p>
-    <p class="small">Полный состав, ограничения и способ применения уточняйте по инструкции на упаковке.</p>
-    <h2>Как проходит заказ</h2>
-    <ol><li>Вы оставляете заявку на этой странице.</li><li>Оператор уточняет цену, количество упаковок и доставку по Казахстану.</li><li>Вы решаете, подтверждать ли заказ после уточнения условий.</li></ol>
-    <p class="small">Условия акции и итоговая стоимость зависят от заказа. Отправка заявки не означает, что весь заказ и доставка бесплатны.</p>
-  </section>
   <footer>
-    Информация носит ознакомительный характер. Не является лекарственным средством.
+    Информация носит ознакомительный характер. БАД не является лекарственным средством.
     Есть противопоказания, необходима консультация специалиста.
-    <br>Доставку и порядок оплаты уточняйте у оператора.
+    <br>Доставка по Казахстану, оплата при получении.
   </footer>
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script>
-function prepareOrder(form){
-  var error=document.getElementById("form-error");
-  error.hidden=true;
-  form.elements.name.value=form.elements.name.value.trim();
-  form.elements.phone.value=form.elements.phone.value.trim();
-  if(!form.elements.name.value || form.elements.phone.value.replace(/\D/g,"").length<7){
-    error.textContent="Укажите имя и телефон, по которому можно с вами связаться.";
-    error.hidden=false; return false;
-  }
-  if(typeof urlGen!=="function"){
-    error.textContent="Форма пока не загрузилась. Обновите страницу и попробуйте ещё раз.";
-    error.hidden=false; return false;
-  }
-  urlGen(form); return true;
-}
 function WindowOnload(){
   $("form").submit(function(){
     var obj = {}, val = {};
@@ -149,7 +125,7 @@ function WindowOnload(){
     obj.phone=$(this).find("input[name=phone]");
     val.name=obj.name.val().trim(); val.phone=obj.phone.val().trim();
     obj.name.val(val.name); obj.phone.val(val.phone);
-    if(val.name.length==0){alert("Укажите имя!");return false;}
+    if(val.name.length==0){alert("Укажите корректные ФИО!");return false;}
     if(val.phone.length<7){alert("Укажите корректный телефон!");return false;}
     return true;
   });
@@ -169,5 +145,16 @@ function WindowOnload(){
 $(function(){WindowOnload();});
 </script>
 <script src="//hostline.today/assets_pages/js/m1ref.js"></script>
+
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();
+for(var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r){return;}}
+k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+(window,document,"script","https://mc.yandex.ru/metrika/tag.js","ym");
+ym(113670471,"init",{clickmap:true,trackLinks:true,accurateTrackBounce:true,webvisor:true});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/113670471" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
 </body>
 </html>
