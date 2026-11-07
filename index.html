@@ -32,6 +32,10 @@ p+p{margin-top:1em}
 .hero .lead{margin-top:29px;max-width:51ch;color:#e2eadf;font-size:clamp(1rem,1.6vw,1.17rem)}
 .button{display:inline-flex;align-items:center;gap:24px;margin-top:29px;padding:12px 18px;background:var(--green);color:#102820;border-radius:4px;text-decoration:none;font-size:.9rem;font-weight:750}
 .button:hover{background:#e1efca}
+.hero-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:29px}
+.hero-actions .button{margin-top:0}
+.button-secondary{background:transparent;color:var(--paper);box-shadow:inset 0 0 0 1px #d1e0bb88}
+.button-secondary:hover{background:#ffffff18}
 .pack{position:relative;align-self:center}
 .pack svg{width:100%;height:auto;display:block;overflow:visible}
 .pack figcaption{font-size:.73rem;letter-spacing:.08em;text-align:center;color:#c1d3c8;margin-top:5px}
@@ -56,6 +60,11 @@ p+p{margin-top:1em}
 .form-card{background:#fffdf7;border:1px solid var(--line);border-radius:11px;padding:clamp(17px,4vw,33px);box-shadow:0 16px 46px #142c2210}
 .form-card h3{margin-bottom:12px}
 .form-card .explain{font-size:.89rem;color:#3c584d;margin-bottom:20px}
+.order-dialog{width:min(530px,calc(100% - 24px));max-width:none;max-height:calc(100dvh - 24px);margin:auto;padding:0;border:0;border-radius:11px;background:#fffdf7;color:var(--ink)}
+.order-dialog::backdrop{background:#071a17b8}
+.order-dialog .form-card{padding-top:47px;border:0;box-shadow:none}
+.dialog-close{position:absolute;top:7px;right:7px;z-index:1;width:38px;height:38px;border:0;border-radius:50%;background:#e9eedf;color:var(--ink);font:24px/1 system-ui,sans-serif;cursor:pointer}
+html:has(.order-dialog[open]){overflow:hidden}
 .m1-top{display:none!important}
 .m1-content,.m1-bottom,.m1-form,.m1-wrap{width:100%!important;max-width:none!important;background:transparent!important;color:var(--ink)!important}
 .m1-row{margin-bottom:14px!important}
@@ -78,7 +87,10 @@ footer{padding-block:25px 33px;color:var(--muted);font-size:.85rem}
       <p class="eyebrow">Концепция · Рабочее название</p>
       <h1>Наука, открывающая путь <em>к новой жизни</em></h1>
       <p class="lead">Есть заболевания, борьба с которыми требует большего, чем привычные решения. Требует точности. Глубокого понимания проблемы. И многолетней научной работы.</p>
-      <a class="button" href="#concept">Подробнее о PHRO13 <span aria-hidden="true">↓</span></a>
+      <div class="hero-actions">
+        <a class="button" href="#concept">Подробнее о PHRO13 <span aria-hidden="true">↓</span></a>
+        <a class="button button-secondary" id="open-order" href="#order">Форма заявки</a>
+      </div>
     </div>
     <figure class="pack">
       <svg viewBox="0 0 490 515" role="img" aria-labelledby="pack-title" xmlns="http://www.w3.org/2000/svg">
@@ -148,8 +160,8 @@ footer{padding-block:25px 33px;color:var(--muted);font-size:.85rem}
       <p class="eyebrow">Информация о концепции</p><h2>Инструкция и ограничения</h2>
       <p class="notice"><strong>Предусмотренные концепцией противопоказания:</strong> беременность и период грудного вскармливания. Окончательный перечень противопоказаний определяется официальной инструкцией препарата.</p>
     </div>
-    <div class="form-card">
-      <h3>Форма заявки на Detox Meridian</h3>
+    <div class="form-card" id="order-card">
+      <h3 id="order-title">Форма заявки на Detox Meridian</h3>
       <p class="explain">Эта форма передаёт контактные данные партнёру M1 для заявки на Detox Meridian. PHRO13 представлен на странице как концепция.</p>
 <!-- ФОРМА M1: поля, product_id и ref менять нельзя -->
     <div class="m1-content">
@@ -181,7 +193,34 @@ footer{padding-block:25px 33px;color:var(--muted);font-size:.85rem}
     </div>
   </div></section>
 </main>
+<dialog class="order-dialog" id="order-dialog" aria-labelledby="order-title">
+  <button class="dialog-close" type="button" aria-label="Закрыть форму" autofocus>×</button>
+</dialog>
 <footer class="wrap">PHRO13 · Концепция разработки и иллюстративный макет упаковки.</footer>
+<script>
+(() => {
+  const trigger = document.getElementById("open-order");
+  const dialog = document.getElementById("order-dialog");
+  const card = document.getElementById("order-card");
+  if (typeof dialog.showModal !== "function") return;
+  const home = document.createComment("inline order card");
+  card.before(home);
+  trigger.setAttribute("aria-haspopup", "dialog");
+  trigger.addEventListener("click", event => {
+    event.preventDefault();
+    dialog.append(card);
+    dialog.showModal();
+  });
+  dialog.querySelector(".dialog-close").addEventListener("click", () => dialog.close());
+  dialog.addEventListener("click", event => {
+    if (event.target === dialog) dialog.close();
+  });
+  dialog.addEventListener("close", () => {
+    home.after(card);
+    trigger.focus({preventScroll: true});
+  });
+})();
+</script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script>
 function WindowOnload(){
