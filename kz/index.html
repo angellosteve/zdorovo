@@ -67,9 +67,6 @@
   label{display:grid;gap:4px;font-weight:650;font-size:.9rem}
   input{width:100%;border:1px solid #cfc4db;border-radius:10px;padding:9px 12px;background:white;color:var(--ink)}
   .form-note{margin-top:10px}
-  .consent{display:flex;align-items:flex-start;gap:8px;font-weight:500}
-  .consent[hidden]{display:none}
-  .consent input{width:auto;margin:4px 0 0}
   #form-status{font-weight:700;color:#512c94;margin-top:9px}
   @media(max-width:700px){
     .wrap{width:calc(100% - 28px)}.hero{grid-template-columns:1fr;gap:16px}.hero-art{width:min(100%,310px);margin:auto}
@@ -163,10 +160,10 @@
   <form method="dialog">
     <label>Ваше имя <input name="name" autocomplete="off" placeholder="Как к вам обращаться" required></label>
     <label>Телефон <input name="phone" type="tel" autocomplete="off" placeholder="+7 7XX XXX XX XX" required></label>
-    <label class="consent" hidden><input type="checkbox" name="consent" disabled>Согласен на передачу имени, телефона и IP-адреса в MetaCPA для обработки заявки.</label>
     <button class="button" type="submit">Оставить заявку</button>
   </form>
-  <p class="form-note">Деморежим. Данные никуда не отправляются.</p>
+  <p class="form-note demo-note">Деморежим. Данные никуда не отправляются.</p>
+  <p class="form-note submit-note" hidden>Нажимая «Оставить заявку», вы соглашаетесь на передачу данных заявки и IP-адреса в MetaCPA.</p>
   <p id="form-status" role="status"></p>
 </dialog>
 <script src="./ingredients.js"></script>
@@ -182,10 +179,8 @@
     : workerPreviewApi;
   const submit = form.querySelector('[type="submit"]');
   if (orderApi) {
-    form.elements.consent.disabled = false;
-    form.elements.consent.required = true;
-    form.querySelector(".consent").hidden = false;
-    order.querySelector(".form-note").hidden = true;
+    order.querySelector(".demo-note").hidden = true;
+    order.querySelector(".submit-note").hidden = false;
   }
   let opener;
   function showOrder(button) {
@@ -206,7 +201,8 @@
     event.preventDefault();
     if (submit.disabled) return;
     const name = form.elements.name.value.trim();
-    const phone = form.elements.phone.value.replace(/\D/g, "");
+    const digits = form.elements.phone.value.replace(/\D/g, "");
+    const phone = /^7\d{9}$/.test(digits) ? "7" + digits : digits;
     if (!name || !/^[78]7\d{9}$/.test(phone)) {
       status.textContent = "Укажите имя и номер Казахстана в формате +7 7XX XXX XX XX.";
       return;
@@ -222,7 +218,7 @@
       const response = await fetch(orderApi, {
         method: "POST",
         headers: {"Content-Type": "application/json"},
-        body: JSON.stringify({name, phone, consent: form.elements.consent.checked})
+        body: JSON.stringify({name, phone, consent: true})
       });
       const result = await response.json();
       if (!response.ok || result.ok !== true) throw new Error("Order not confirmed");
