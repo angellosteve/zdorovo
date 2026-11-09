@@ -31,9 +31,31 @@
   .offer small{display:block;margin-top:5px;font-size:.84rem;font-weight:650}
   .hero-art{width:100%;max-width:400px;justify-self:center;overflow:hidden;border-radius:24px;background:white;box-shadow:0 16px 45px #45268218}
   .hero-art img{display:block;width:100%;height:auto}
+  .subnav{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:18px 0 42px}
+  .subnav a{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:3px 8px;padding:14px 16px;min-height:76px;border:1px solid #ded2f2;border-radius:17px;background:#f3edff;color:#382063;text-decoration:none;font-size:1rem;font-weight:750;line-height:1.2;letter-spacing:-.018em}
+  .subnav a:first-child{background:#eef7c8;border-color:#dce9a6;color:#29341b}
+  .subnav a:hover,.subnav a:focus-visible{background:var(--purple);border-color:var(--purple);color:white}
+  .subnav .nav-number{grid-column:1/-1;font-size:.72rem;font-weight:650;letter-spacing:.08em;opacity:.78}
+  .subnav .nav-arrow{font-size:1.1rem}
   section:not(.hero){margin-block:clamp(38px,7vw,78px);scroll-margin-top:16px}
+  .benefits{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+  .benefits p{border-radius:19px;padding:22px;background:white;border:1px solid var(--line);font-weight:650}
+  .benefits p:nth-child(3){grid-column:1/-1;background:#f1e9ff}
   .group{margin-top:19px;background:white;border:1px solid var(--line);border-radius:23px;padding:clamp(15px,3vw,32px)}
   .group > p{margin:8px 0 16px;color:var(--muted)}
+  .ingredients{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}
+  .ingredient{display:grid;grid-template-columns:76px minmax(0,1fr);gap:12px;align-items:start;background:#f8f6f1;padding:13px;border-radius:14px;min-width:0}
+  .ingredient svg{width:76px;height:76px;background:#eaf0da;border-radius:12px}
+  .ingredient h4{margin:0;font-size:1rem;font-weight:750;line-height:1.22;letter-spacing:-.018em;overflow-wrap:anywhere}
+  .ingredient p{margin:5px 0 0;color:var(--muted);font-size:.875rem}
+  .ingredient .origin{font-weight:700;color:#574187}
+  .steps{display:grid;gap:12px}
+  .steps article,.usage{border:1px solid var(--line);background:white;border-radius:19px;padding:clamp(17px,3vw,28px)}
+  .steps p,.usage p{margin-top:9px}
+  .usage{background:#f1e9ff}
+  details{border-bottom:1px solid var(--line);padding:14px 0}
+  summary{cursor:pointer;font-weight:750}
+  details p{margin-top:10px}
   .order-end{background:var(--acid);border-radius:23px;padding:clamp(22px,4vw,40px)}
   footer{color:var(--muted);font-size:.85rem}
   dialog{width:min(435px,calc(100% - 28px));max-height:calc(100dvh - 28px);overflow:auto;margin:clamp(14px,6dvh,52px) auto auto;border:1px solid #e1d6ef;border-radius:24px;padding:clamp(18px,5vw,29px);color:var(--ink);background:#fffefa;box-shadow:0 25px 90px #21123245}
@@ -51,7 +73,10 @@
   #form-status{font-weight:700;color:#512c94;margin-top:9px}
   @media(max-width:700px){
     .wrap{width:calc(100% - 28px)}.hero{grid-template-columns:1fr;gap:16px}.hero-art{width:min(100%,310px);margin:auto}
+    .benefits,.ingredients{grid-template-columns:1fr}.benefits p:nth-child(3){grid-column:auto}
     header .button{padding-inline:12px;font-size:.85rem}
+    .subnav{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+    .subnav a{padding:11px 12px;min-height:64px;font-size:.9rem}
   }
 </style>
 <header><div class="wrap"><span class="wordmark">Ketish Dietish</span><button class="button" type="button" data-order>Оставить заявку</button></div></header>
@@ -60,8 +85,8 @@
     <div>
       <div class="eyebrow">Казахстан</div>
       <h1 id="title">Ketish<br>Dietish</h1>
-      <p>Условия заказа в Казахстане</p>
-      <p class="product-note">Сведения о составе и применении уточняются. Перед применением ознакомьтесь с инструкцией на упаковке.</p>
+      <p>Стабильное наличие и максимальная защита качества нашей добавки</p>
+      <p class="product-note">Сведения на этой странице не относятся к Ketish Dietish и не являются инструкцией по его применению.</p>
       <div class="offer">
         <del>61&nbsp;990 ₸</del>
         <strong>Пачка бесплатно*</strong>
@@ -70,17 +95,62 @@
       <button class="button" type="button" data-order>Оставить заявку&nbsp; ↗</button>
     </div>
     <figure class="hero-art">
-      <img src="./ketish-dietish.jpg" width="750" height="750" alt="Коробка Ketish Dietish и две красные капсулы">
+      <img src="./ketish-dietish.png" width="750" height="750" alt="Коробка Ketish Dietish и две красные капсулы">
     </figure>
   </section>
+  <nav class="subnav" aria-label="Разделы страницы">
+    <a href="#product"><span class="nav-number" aria-hidden="true">01</span><span>О продукте</span><span class="nav-arrow" aria-hidden="true">↘</span></a>
+    <a href="#formula"><span class="nav-number" aria-hidden="true">02</span><span>Состав</span><span class="nav-arrow" aria-hidden="true">↘</span></a>
+    <a href="#effect"><span class="nav-number" aria-hidden="true">03</span><span>Как действует</span><span class="nav-arrow" aria-hidden="true">↘</span></a>
+    <a href="#usage"><span class="nav-number" aria-hidden="true">04</span><span>Как принимать</span><span class="nav-arrow" aria-hidden="true">↘</span></a>
+  </nav>
   <section id="product" aria-labelledby="product-title">
-    <span class="eyebrow">О продукте</span>
-    <h2 id="product-title">Ketish Dietish</h2>
-    <div class="group">
-      <h3>Что указано на упаковке</h3>
-      <p>На лицевой стороне упаковки указаны клюква, L-карнитин и хром. В упаковке 30 капсул.</p>
-      <p>Оператор уточнит стоимость курса и условия доставки перед подтверждением заказа.</p>
+    <span class="eyebrow">01 / Продукт</span>
+    <h2 id="product-title">О продукте</h2>
+    <div class="benefits">
+      <p>Эффективно снижает вес и снимает отёки.</p>
+      <p>Уменьшает объём талии, живота и бёдер.</p>
+      <p>Обеспечивает баланс энергии в течение дня, избавляет от целлюлита и улучшает качество кожи, волос и ногтей, снижает риск переедания. Отборные экстракты высокого качества.</p>
     </div>
+  </section>
+  <section id="formula" aria-labelledby="formula-title">
+    <span class="eyebrow">02 / Компоненты</span>
+    <h2 id="formula-title">Состав</h2>
+    <div class="group">
+      <h3>Brand Extract</h3>
+      <p>Активная моноформула, состоящая из экстракта съедобного индийского кактуса.</p>
+      <div class="ingredients" id="brand"></div>
+    </div>
+    <div class="group">
+      <h3>Thermo-Extend Lipolytic</h3>
+      <p>Уникальная смесь биологически активных веществ.</p>
+      <div class="ingredients" id="thermo"></div>
+    </div>
+    <div class="group">
+      <h3>BioCell Collagen Complex</h3>
+      <p>Объединённый комплекс элементов в максимально биодоступной матричной форме (не является смесью отдельных компонентов).</p>
+      <div class="ingredients" id="biocell"></div>
+    </div>
+  </section>
+  <section id="effect" aria-labelledby="effect-title">
+    <span class="eyebrow">03 / Формула</span>
+    <h2 id="effect-title">Как действует</h2>
+    <div class="steps">
+      <article><h3>Brand Extract</h3><p>Формула Brand Extract продлевает чувство сытости, помогая легче придерживаться режима питания и избегать спонтанных перекусов.<br>Снижает психологическую нагрузку, сохраняя спокойствие и комфорт в процессе похудения.</p></article>
+      <article><h3>Thermo-Extend Lipolytic</h3><p>Thermo-Extend Lipolytic способствует активному снижению жировых отложений и уменьшению объёмов в области талии, живота и бёдер, формируя стройный силуэт фигуры.<br>Обеспечивает баланс энергии, помогая сохранять лёгкость и активность в течение дня.<br>Способствует выведению лишней жидкости, уменьшая утреннюю отёчность лица и тела.</p></article>
+      <article><h3>BioCell Collagen</h3><p>Комплекс BioCell Collagen обеспечивает косметический эффект, поддерживая естественные процессы восстановления и обновления тканей.<br>Улучшает качество кожи, уменьшая проявления целлюлита и делая кожу более упругой и ровной.<br>Поддерживает здоровую структуру волос и ногтей. Волосы становятся менее ломкими и более прочными.</p></article>
+    </div>
+  </section>
+  <section id="usage" aria-labelledby="usage-title">
+    <span class="eyebrow">04 / Применение</span>
+    <h2 id="usage-title">Как принимать</h2>
+    <div class="usage">
+      <p>Первые 3–5 дней принимайте по 1 капсуле в день.<br>Далее увеличьте дозировку до 2 капсул за один приём.</p>
+      <p>Если 1 капсула даёт комфортный эффект, то остановитесь на этой дозировке. Для усиления эффекта возможен приём до 3 капсул в день (не более).</p>
+      <p>Принимать утром перед едой, запивая достаточным количеством воды. В день тренировки — за 1 час до начала. Не рекомендуется принимать за 4–6 часов до отхода ко сну.</p>
+    </div>
+    <details open><summary>Есть ли побочные эффекты?</summary><p>Все ингредиенты являются безопасными и мягко действуют на организм. При правильном приёме побочные эффекты отсутствуют. В случае возникновения нежелательной реакции снизьте дозировку до комфортной или отмените приём.</p></details>
+    <details open><summary>Противопоказания</summary><ul><li>Беременность и лактация</li><li>Индивидуальная непереносимость компонентов</li><li>Тяжёлые заболевания печени и почек</li><li>Сердечно-сосудистые заболевания</li><li>Бессонница</li></ul><p>Не рекомендуется принимать лицам моложе 18 лет.</p></details>
   </section>
   <section class="order-end" aria-labelledby="last-title"><h2 id="last-title">Форма заказа</h2><button class="button" type="button" data-order>Оставить заявку&nbsp; ↗</button></section>
 </main>
@@ -99,6 +169,7 @@
   <p class="form-note">Деморежим. Данные никуда не отправляются.</p>
   <p id="form-status" role="status"></p>
 </dialog>
+<script src="./ingredients.js"></script>
 <script>
   const order = document.querySelector("#order");
   const form = order.querySelector("form");
