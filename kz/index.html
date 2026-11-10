@@ -175,7 +175,7 @@
   const isPublicLanding = location.origin === "https://angellosteve.github.io"
     && ["/zdorovo/kz/", "/zdorovo/kz/index.html"].includes(location.pathname);
   const orderApi = isPublicLanding
-    ? "https://kz-slim-orders.denis-azot8888.workers.dev/api/order"
+    ? "https://zdorovo-kz-orders.pages.dev/api/order"
     : workerPreviewApi;
   const submit = form.querySelector('[type="submit"]');
   if (orderApi) {
