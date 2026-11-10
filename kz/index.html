@@ -221,9 +221,16 @@
         body: JSON.stringify({name, phone, consent: true})
       });
       const result = await response.json();
-      if (!response.ok || result.ok !== true) throw new Error("Order not confirmed");
+      // These Worker codes can follow a successful POST to MetaCPA.
+      const sentToMetaCPA = response.status === 502 && (
+        result.code === "metacpa_unconfirmed"
+        || (result.code === "metacpa_rejected" && Boolean(result.orderId))
+      );
+      if (!(response.ok && result.ok === true) && !sentToMetaCPA) {
+        throw new Error("Order not sent");
+      }
       form.reset();
-      status.textContent = "Заявка принята. Оператор свяжется с вами.";
+      status.textContent = "Спасибо за заказ!";
     } catch {
       status.textContent = "Не удалось подтвердить приём заявки. Если звонка не будет, попробуйте позже.";
     } finally {
